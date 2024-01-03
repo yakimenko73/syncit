@@ -7,8 +7,8 @@ defmodule SyncitWeb.RoomChannel do
   end
 
   @impl true
-  def handle_in("shout", payload, socket) do
-    broadcast(socket, "shout", payload)
+  def handle_in(message, payload, socket) do
+    broadcast(socket, message, payload)
     {:noreply, socket}
   end
 end
