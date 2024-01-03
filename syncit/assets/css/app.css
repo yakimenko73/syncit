@@ -2,4 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* This file is for your main application CSS */
+html, body, main {
+  height: 100%;
+}
