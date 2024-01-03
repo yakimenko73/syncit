@@ -4,33 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        main {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            padding: 20px;
-        }
-
-        .video-section {
-            flex: 1;
-            max-width: 800px;
-            margin-right: 20px;
-        }
-
-        iframe {
-            width: 100%;
-            height: 400px;
-        }
-    </style>
+    <script src="https://www.youtube.com/iframe_api"></script>
 </head>
 
 <body>
-<main>
-    <div class="video-section">
-        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/tgbNymZ7vqY?autoplay=1&mute=1"></iframe>
-    </div>
-</main>
+    <div id="player"></div>
+
+    <script>
+        function onYouTubeIframeAPIReady() {
+            new YT.Player('player', {
+                height: '100%',
+                width: '100%',
+                videoId: 'EO5PCqJjn8Y',
+                autoplay: true,
+                mute: true,
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+        function onPlayerStateChange(event) {
+            switch (event.data) {
+                case YT.PlayerState.PLAYING:
+                    console.log('Video is playing at ' + event.target.getCurrentTime());
+                    break;
+                case YT.PlayerState.PAUSED:
+                    console.log('Video is paused at ' + event.target.getCurrentTime());
+                    break;
+                case YT.PlayerState.ENDED:
+                    console.log('Video has ended');
+                    break;
+            }
+        }
+    </script>
 </body>
 
 </html>
