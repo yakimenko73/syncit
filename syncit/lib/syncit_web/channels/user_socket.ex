@@ -1,6 +1,5 @@
 defmodule SyncitWeb.UserSocket do
   use Phoenix.Socket
-
   channel "room:*", SyncitWeb.RoomChannel
 
   @impl true
