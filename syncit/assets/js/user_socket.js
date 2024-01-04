@@ -15,7 +15,7 @@ channel.on("play", payload => {
     let timingDiff = player.getCurrentTime() - payload.currentTime;
     player.playVideo();
     if (timingDiff >= 2.0 || timingDiff <= -2.0) {
-        console.log("seekTo")
+        console.debug("seekTo")
         player.seekTo(payload.currentTime)
     }
 })
