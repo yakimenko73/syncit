@@ -19,7 +19,7 @@ defmodule SyncitWeb.ViewersCountLive do
 
   def mount(_params, _session, socket) do
     SyncitWeb.Endpoint.subscribe(@topic)
-    {:ok, assign(socket, viewers_count: ViewersCounter.value())}
+    {:ok, assign(socket, viewers_count: ViewersCounter.value()), layout: false}
   end
 
   def handle_info(%{topic: @topic, event: "join"}, socket) do
