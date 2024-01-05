@@ -1,4 +1,4 @@
-<.flash_group flash={@flash} />
+<script src="https://www.youtube.com/iframe_api"></script>
 <div class="flex">
     <div class="px-4 py-10 sm:px-6 sm:py-28 lg:px-8 xl:px-28 xl:py-32 mx-auto max-w-2xl lg:mx-0">
         <svg viewBox="0 0 71 48" class="h-12" aria-hidden="true">
@@ -24,6 +24,7 @@
         <p class="mt-4 text-base leading-7 text-zinc-600">
             Join us in redefining connection and making every moment count, synchronized and unforgettable.
         </p>
+        <%= live_render(@conn, SyncitWeb.PlayerInputLive) %>
         <div class="flex">
             <div class="w-full sm:w-auto">
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-3">
@@ -47,47 +48,7 @@
         </div>
     </div>
     <div class="px-4 py-10 xl:px-28 flex flex-col w-full">
-        <div id="player">
-            <script src="https://www.youtube.com/iframe_api"></script>
-            <script>
-                function onYouTubeIframeAPIReady() {
-                    window.player = new YT.Player('player', {
-                        height: '100%',
-                        width: '100%',
-                        // width: '1024px',
-                        videoId: 'DwKQqAgKuKY',
-                        border: 0,
-                        playerVars: {
-                            'autoplay': 1,
-                            'mute': 1,
-                        },
-                        events: {
-                            'onReady': onPlayerReady,
-                            'onStateChange': onPlayerStateChange
-                        }
-                    });
-                }
-
-                function onPlayerReady(event) {
-                    event.target.playVideo();
-                }
-
-                function onPlayerStateChange(event) {
-                    switch (event.data) {
-                        case YT.PlayerState.PLAYING:
-                            roomChannel.push("play", {currentTime: event.target.getCurrentTime()})
-                            break;
-                        case YT.PlayerState.PAUSED:
-                            roomChannel.push("pause", {currentTime: event.target.getCurrentTime()})
-                            break;
-                        case YT.PlayerState.ENDED:
-                            console.log('Video has ended');
-                            break;
-                    }
-                }
-            </script>
-
-        </div>
+        <%= live_render(@conn, SyncitWeb.PlayerLive) %>
         <%= live_render(@conn, SyncitWeb.ViewersCountLive) %>
     </div>
 </div>
