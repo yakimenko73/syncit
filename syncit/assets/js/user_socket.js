@@ -23,6 +23,6 @@ channel.on("pause", () => {
     player.pauseVideo()
 })
 
-window.roomChannel = channel
+window.lobbyChannel = channel
 
 export default socket

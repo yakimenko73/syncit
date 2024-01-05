@@ -26,10 +26,10 @@ Hooks.Player = {
         function onPlayerStateChange(event) {
             switch (event.data) {
                 case YT.PlayerState.PLAYING:
-                    roomChannel.push("play", {currentTime: event.target.getCurrentTime()})
+                    lobbyChannel.push("play", {currentTime: event.target.getCurrentTime()})
                     break;
                 case YT.PlayerState.PAUSED:
-                    roomChannel.push("pause", {currentTime: event.target.getCurrentTime()})
+                    lobbyChannel.push("pause", {currentTime: event.target.getCurrentTime()})
                     break;
                 case YT.PlayerState.ENDED:
                     console.log('Video has ended');

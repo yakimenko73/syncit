@@ -20,7 +20,7 @@ defmodule SyncitWeb.Router do
   scope "/", SyncitWeb do
     pipe_through [:browser, :require_authenticated_user]
 
-    get "/", RoomController, :index
+    get "/", LobbyController, :index
   end
 
   if Application.compile_env(:syncit, :dev_routes) do

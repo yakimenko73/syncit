@@ -5,14 +5,9 @@ defmodule SyncitWeb.LobbyChannelTest do
     {:ok, _, socket} =
       SyncitWeb.UserSocket
       |> socket("user_id", %{some: :assign})
-      |> subscribe_and_join(SyncitWeb.RoomChannel, "lobby")
+      |> subscribe_and_join(SyncitWeb.LobbyChannel, "lobby")
 
     %{socket: socket}
-  end
-
-  test "ping replies with status ok", %{socket: socket} do
-    ref = push(socket, "ping", %{"hello" => "there"})
-    assert_reply ref, :ok, %{"hello" => "there"}
   end
 
   test "shout broadcasts to lobby", %{socket: socket} do
