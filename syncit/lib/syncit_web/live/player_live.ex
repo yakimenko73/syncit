@@ -6,7 +6,10 @@ defmodule SyncitWeb.PlayerLive do
 
   def render(assigns) do
     ~H"""
-    <div id="player" video-id={@video_id} phx-hook="Player" phx-window-key="Enter"></div>
+    <div class="px-4 py-10 xl:px-28 flex flex-col h-full max-h-screen w-screen max-w-screen-2xl">
+        <div id="player" video-id={@video_id} phx-hook="Player" phx-window-key="Enter"></div>
+        <%= live_render(@socket, SyncitWeb.ViewersCountLive, id: "viewers-counter") %>
+    </div>
     """
   end
 

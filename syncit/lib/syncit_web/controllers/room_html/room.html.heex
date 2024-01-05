@@ -47,8 +47,5 @@
             </div>
         </div>
     </div>
-    <div class="px-4 py-10 xl:px-28 flex flex-col w-full">
-        <%= live_render(@conn, SyncitWeb.PlayerLive) %>
-        <%= live_render(@conn, SyncitWeb.ViewersCountLive) %>
-    </div>
+    <%= live_render(@conn, SyncitWeb.PlayerLive) %>
 </div>
