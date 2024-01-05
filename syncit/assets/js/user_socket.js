@@ -3,7 +3,7 @@ import {Socket} from "phoenix"
 let socket = new Socket("/socket")
 socket.connect()
 
-let channel = socket.channel("room:lobby", {})
+let channel = socket.channel("lobby", {})
 channel.join()
     .receive("ok", resp => {
         console.log("Joined successfully", resp)

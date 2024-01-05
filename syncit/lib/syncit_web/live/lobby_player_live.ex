@@ -1,4 +1,4 @@
-defmodule SyncitWeb.PlayerLive do
+defmodule SyncitWeb.LobbyPlayerLive do
   use SyncitWeb, :live_view
 
   @topic "lobby:player"
@@ -8,7 +8,7 @@ defmodule SyncitWeb.PlayerLive do
     ~H"""
     <div class="px-4 py-10 xl:px-28 flex flex-col h-full max-h-screen w-screen max-w-screen-2xl">
         <div id="player" video-id={@video_id} phx-hook="Player" phx-window-key="Enter"></div>
-        <%= live_render(@socket, SyncitWeb.ViewersCountLive, id: "viewers-counter") %>
+        <%= live_render(@socket, SyncitWeb.LobbyPlayerViewersLive, id: "player-viewers") %>
     </div>
     """
   end

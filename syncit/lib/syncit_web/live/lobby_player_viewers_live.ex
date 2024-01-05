@@ -1,8 +1,8 @@
-defmodule SyncitWeb.ViewersCountLive do
+defmodule SyncitWeb.LobbyPlayerViewersLive do
   use SyncitWeb, :live_view
   alias Syncit.Lobby.ViewersCounter
 
-  @topic "viewers"
+  @topic "lobby:viewers"
 
   def render(assigns) do
     ~H"""

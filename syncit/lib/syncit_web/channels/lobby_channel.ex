@@ -1,9 +1,9 @@
-defmodule SyncitWeb.RoomChannel do
+defmodule SyncitWeb.LobbyChannel do
   use SyncitWeb, :channel
   alias Syncit.Lobby.ViewersCounter
 
-  @topic "viewers"
-  @channel "room:lobby"
+  @topic "lobby:viewers"
+  @channel "lobby"
 
   @impl true
   def join(@channel, _payload, socket) do

@@ -1,4 +1,4 @@
-defmodule SyncitWeb.PlayerInputLive do
+defmodule SyncitWeb.LobbyPlayerInputLive do
   use SyncitWeb, :live_view
 
   @topic "lobby:player"
@@ -7,13 +7,13 @@ defmodule SyncitWeb.PlayerInputLive do
   def render(assigns) do
     ~H"""
     <.flash_group flash={@flash} />
-    <.input field={@form[:url]} type="url" phx-keydown="new_url" phx-key="Enter" phx-click="lv:clear-flash" placeholder="Try another one..." />
+    <.input field={@form[:uri]} type="url" phx-keydown="new_uri" phx-key="Enter" phx-click="lv:clear-flash" placeholder="Try another one..." />
     """
   end
 
   def mount(_params, _session, socket) do
-    url = live_flash(socket.assigns.flash, :url)
-    form = to_form(%{"url" => url}, as: "video")
+    uri = live_flash(socket.assigns.flash, :uri)
+    form = to_form(%{"uri" => uri}, as: "video")
     {
       :ok,
       assign(socket, form: form),
@@ -24,7 +24,7 @@ defmodule SyncitWeb.PlayerInputLive do
     }
   end
 
-  def handle_event("new_url", %{"key" => "Enter", "value" => uri}, socket) do
+  def handle_event("new_uri", %{"key" => "Enter", "value" => uri}, socket) do
     uri
     |> extract_video_id
     |> broadcast_video_id(socket)

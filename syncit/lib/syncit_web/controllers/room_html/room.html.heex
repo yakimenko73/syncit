@@ -24,7 +24,7 @@
         <p class="mt-4 text-base leading-7 text-zinc-600">
             Join us in redefining connection and making every moment count, synchronized and unforgettable.
         </p>
-        <%= live_render(@conn, SyncitWeb.PlayerInputLive) %>
+        <%= live_render(@conn, SyncitWeb.LobbyPlayerInputLive) %>
         <div class="flex">
             <div class="w-full sm:w-auto">
                 <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-3">
@@ -47,5 +47,5 @@
             </div>
         </div>
     </div>
-    <%= live_render(@conn, SyncitWeb.PlayerLive) %>
+    <%= live_render(@conn, SyncitWeb.LobbyPlayerLive) %>
 </div>

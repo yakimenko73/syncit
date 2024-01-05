@@ -1,6 +1,6 @@
 defmodule SyncitWeb.UserSocket do
   use Phoenix.Socket
-  channel "room:*", SyncitWeb.RoomChannel
+  channel "lobby", SyncitWeb.LobbyChannel
 
   @impl true
   def connect(_params, socket, _connect_info) do
