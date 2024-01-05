@@ -12,7 +12,7 @@ defmodule Syncit.Application do
       {Phoenix.PubSub, name: Syncit.PubSub},
       {Finch, name: Syncit.Finch},
       SyncitWeb.Endpoint,
-      Syncit.Lobby.ViewersCounter
+      Syncit.Lobby.PlayerAgent
     ]
 
     opts = [strategy: :one_for_one, name: Syncit.Supervisor]

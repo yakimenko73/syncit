@@ -1,6 +1,6 @@
 defmodule SyncitWeb.LobbyPlayerViewersLive do
   use SyncitWeb, :live_view
-  alias Syncit.Lobby.ViewersCounter
+  alias Syncit.Lobby.PlayerAgent
 
   @topic "lobby:viewers"
 
@@ -19,7 +19,7 @@ defmodule SyncitWeb.LobbyPlayerViewersLive do
 
   def mount(_params, _session, socket) do
     SyncitWeb.Endpoint.subscribe(@topic)
-    {:ok, assign(socket, viewers_count: ViewersCounter.value()), layout: false}
+    {:ok, assign(socket, viewers_count: PlayerAgent.get_viewers_count()), layout: false}
   end
 
   def handle_info(%{topic: @topic, event: "join"}, socket) do

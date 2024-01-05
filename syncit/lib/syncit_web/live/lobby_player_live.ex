@@ -1,8 +1,8 @@
 defmodule SyncitWeb.LobbyPlayerLive do
   use SyncitWeb, :live_view
+  alias Syncit.Lobby.PlayerAgent
 
   @topic "lobby:player"
-  @default_video_id "DwKQqAgKuKY"
 
   def render(assigns) do
     ~H"""
@@ -15,10 +15,12 @@ defmodule SyncitWeb.LobbyPlayerLive do
 
   def mount(_params, _session, socket) do
     SyncitWeb.Endpoint.subscribe(@topic)
-    {:ok, assign(socket, video_id: @default_video_id), layout: false}
+    {:ok, assign(socket, video_id: PlayerAgent.get_video()), layout: false}
   end
 
   def handle_info(%{topic: @topic, event: "update_video", payload: payload}, socket) do
-    {:noreply, assign(socket, video_id: payload[:video_id])}
+    video_id = payload[:video_id]
+    PlayerAgent.update_video(video_id)
+    {:noreply, assign(socket, video_id: video_id)}
   end
 end
