@@ -2,7 +2,6 @@ defmodule SyncitWeb.LobbyPlayerInputLive do
   use SyncitWeb, :live_view
 
   @topic "lobby:player"
-  @youtube_video_id_regex ~r/(?<=watch\?v=)([a-zA-Z0-9_-]{11})/
 
   def render(assigns) do
     ~H"""
@@ -26,19 +25,12 @@ defmodule SyncitWeb.LobbyPlayerInputLive do
 
   def handle_event("new_uri", %{"key" => "Enter", "value" => uri}, socket) do
     uri
-    |> extract_video_id
+    |> Syncit.extract_video_id
     |> broadcast_video_id(socket)
   end
 
   def handle_event(_, _, socket) do
     {:noreply, socket}
-  end
-
-  defp extract_video_id(uri) do
-    case Regex.run(@youtube_video_id_regex, uri) do
-      [_, id] -> id
-      _ -> nil
-    end
   end
 
   defp broadcast_video_id(id, socket) when id != nil do
