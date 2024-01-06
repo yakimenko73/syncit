@@ -10,13 +10,9 @@ defmodule Syncit.Lobby.PlayerAgent do
 
   def get_viewers_count, do: get_state().viewers_count
 
-  def get_current_time, do: get_state().current_time
-
   def get_video, do: get_state().video
 
   def update_video(video), do: Agent.update(__MODULE__, &%{&1 | video: video})
-
-  def update_current_time(time), do: Agent.update(__MODULE__, &%{&1 | current_time: time})
 
   def increment_viewers_count(), do: Agent.update(__MODULE__, & %{&1 | viewers_count: &1.viewers_count + 1})
 
