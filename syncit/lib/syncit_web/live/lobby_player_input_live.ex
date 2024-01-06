@@ -2,6 +2,7 @@ defmodule SyncitWeb.LobbyPlayerInputLive do
   use SyncitWeb, :live_view
 
   @topic "lobby:player"
+  @invalid_youtube_link_error "invalid YouTube link"
 
   def render(assigns) do
     ~H"""
@@ -39,6 +40,6 @@ defmodule SyncitWeb.LobbyPlayerInputLive do
   end
 
   defp broadcast_video_id(id, socket) when id == nil do
-    {:noreply, put_flash(socket, :error, "Invalid YouTube link")}
+    {:noreply, put_flash(socket, :error, @invalid_youtube_link_error)}
   end
 end
