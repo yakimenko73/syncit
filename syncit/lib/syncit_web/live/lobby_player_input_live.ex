@@ -7,7 +7,7 @@ defmodule SyncitWeb.LobbyPlayerInputLive do
   def render(assigns) do
     ~H"""
     <.flash_group flash={@flash} />
-    <.input field={@form[:uri]} type="url" phx-keydown="new_uri" phx-key="Enter" phx-click="lv:clear-flash" placeholder="Try another one..." />
+    <.input field={@form[:uri]} type="url" phx-keydown="new_uri" phx-key="Enter" phx-click="lv:clear-flash" placeholder="Drop a YouTube link, let the magic sync begin 🚀🎬" />
     """
   end
 
