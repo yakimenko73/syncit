@@ -21,9 +21,9 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
-import "./user_socket.js"
 import "./hooks.js";
 import Hooks from "./hooks";
+import userSocket from "./user_socket";
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {params: {_csrf_token: csrfToken}, hooks: Hooks})
@@ -35,6 +35,19 @@ window.addEventListener("phx:page-loading-stop", _info => topbar.hide())
 
 // connect if there are any LiveViews on the page
 liveSocket.connect()
+
+// connect to user socket
+userSocket.connect()
+
+// expose and open lobby channel
+window.lobbyChannel = userSocket.channel("lobby", {})
+lobbyChannel.join()
+    .receive("ok", resp => {
+        console.debug("Joined successfully", resp)
+    })
+    .receive("error", resp => {
+        console.debug("Unable to join", resp)
+    })
 
 // expose liveSocket on window for web console debug logs and latency simulation:
 // >> liveSocket.enableDebug()
