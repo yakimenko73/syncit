@@ -59,7 +59,7 @@ Hooks.Player = {
             if (sessionId === payload.sessionId) return;
 
             let diff = player.getCurrentTime() - payload.currentTime;
-            if (diff <= 1 || diff >= -1)
+            if (diff <= 1 && diff >= -1)
                 player.pauseVideo();
         }
     }
