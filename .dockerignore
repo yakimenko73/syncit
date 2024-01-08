@@ -1,0 +1,14 @@
+.dockerignore
+
+.git
+!.git/HEAD
+!.git/refs
+
+# Common development/test artifacts
+/cover/
+/doc/
+/test/
+/tmp/
+
+/_build/
+/deps/
