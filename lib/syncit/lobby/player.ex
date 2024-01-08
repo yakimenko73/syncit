@@ -1,3 +1,3 @@
 defmodule Syncit.Lobby.Player do
-  defstruct video_id: "DwKQqAgKuKY", viewers_count: 0
+  defstruct video_id: "anDC0JLjtfM", viewers_count: 0
 end
